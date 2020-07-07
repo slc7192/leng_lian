@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/usecenter.css">
+    <link rel="stylesheet" href="../publicJs/element_ui/element.css">
+    <style>
+        [v-cloak]{
+        display: none;
+        }
+    .top{
+    width: 100%;
+    min-width: 1200px;
+    height: 81px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+}
+.top::before{
+    content: "";
+    position: absolute;
+    left: 35%;
+    width: 215px;
+    height: 100px;
+    background-color: #fff;
+    transform: translate(-52px,40px) rotate(30deg);
+}
+.top::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 35%;
+    height: 81px;
+    background-color: #fff;
+}
+.use_handler{
+    /* margin-left: 600px; */
+    display: flex;
+    margin-top: 25px;
+}
+.arrow_banner {
+      display: flex;
+      justify-content: space-between;
+      width: 1200px;
+      height: 80px;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      margin-top: -40px;
+      left: 19%;
+    }
+
+    .arrow_banner span {
+      /* display: block; */
+      width: 45px;
+      height: 80px;
+      background-color: rgba(0, 0, 0, 0.3);
+      line-height: 80px;
+      text-align: center;
+      cursor: pointer;
+      display: none;
+      transition: all 1s;
+    }
+
+    .arrow_banner span img {
+      vertical-align: middle;
+      border-style: none;
+    }
+
+    .banner:hover .arrow_left {
+      display: block;
+
+    }
+
+    .banner:hover .arrow_right {
+      display: block;
+    }
+
+    .arrow_left:hover,
+    .arrow_left:active {
+      background-color: rgba(0, 0, 0, 1);
+    }
+    /* 顶 */
+    .con{
+      width:1200px;
+      margin:0 auto;
+      display: flex;
+      justify-content: space-between;
+      z-index: 999;
+    }
+    .con .left{
+      padding-top: 16px;
+    }
+    </style>
+</head>
+<body>
+  <div id="usercenter" v-cloak>
+    <div class="top">
+        <div class="con">
+          <div class="left">
+            <img src="../img/logo.png" alt="">
+          </div>
+          <div class="use_handler">
+              <div class="btn_black">
+                  <a href="../index.html">返回首页</a>
+              </div>
+              <!-- <div class="btn_white">
+                 <a href="./reg.html" >注册</a>
+              </div> -->
+            </div>
+        </div>
+      </div>
+    <div class="head" style="z-index: 11111;">
+        <div class="center">
+            个人中心
+        </div>
+    </div>
+    <div class="locate">
+        <div class="center">
+            <i class="icon"></i>
+            <span>首页</span>
+            <i>/</i>
+            <span>个人中心</span>
+        </div>
+    </div>
+    <div class="center band">
+        <div class="bandNav">
+            <div class="navItem">
+               <a href="#p1">基本信息</a>
+            </div>
+            <div class="navItem">
+                <a href="#p4">学生成绩</a>
+            </div>
+            <div class="navItem">
+                <a href="#p5">开始实验</a>
+            </div>
+            <div class="navItem">
+                <a href="#p6">电商平台</a>
+            </div>
+            <div class="navItem">
+                <a href="#p2">修改密码</a>
+            </div>
+            <div class="navItem">
+                <a href="#p3">修改手机</a>
+            </div>
+        </div>
+        <!-- 修改个人信息 -->
+        <div class="navCont" id="p1" >
+            <div class="contTitle">
+                基本信息
+            </div>
+            <div class="cont">
+                <div>
+                    <div class="cont_l">
+                        <div class="line">
+                            <div class="lineTitle">手机号码:</div>
+                            <div><span>1888888888</span><div class="btn_change">修改手机</div></div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">真实姓名:</div>
+                            <div><span>122</span></div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">学生属性:</div>
+                            <div><span>本校学生</span></div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">性别:</div>
+                            <div>
+                                <span class="sex"><i class="value"></i>男</span>
+                                <span class="sex"><i></i>女</span>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="btn_save">保存</div>
+                                <div class="btn_cancel">取消</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont_r">
+                        <img src="../img/head-img.png" width="100%" alt="">
+                        <div class="btn_edit">修改头像</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 修改密码 -->
+        <div class="navCont" id="p2" >
+            <div class="contTitle">
+                修改密码
+            </div>
+            <div class="cont password" style="display: none;">
+                <div class="errortip">您两次输入的密码不一致，请重新输入</div>
+                <div>
+                    <div class="cont_l">
+                        <div class="line">
+                            <div class="lineTitle">旧密码:</div>
+                            <div><input type="password">
+                                <div class="btn_forget">忘记密码？</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">新密码:</div>
+                            <div><input type="password"></div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">确认密码:</div>
+                            <div><input type="password"></div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="tip">密码6-20个字符，由字母、数字和符号的两种以上组合</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="btn_save">保存</div>
+                                <div class="btn_cancel">取消</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont p_result">
+                <div>
+                    <div class="msg">
+                        <div></div>
+                        <p>修改密码成功，请牢记新的登录密码！</p>
+                    </div>
+                    <div class="btn_relog">重新登录</div>
+                </div>
+            </div>
+        </div>
+        <!-- 修改绑定手机 -->
+        <div class="navCont" id="p3" >
+            <div class="contTitle">
+                修改手机
+            </div>
+            <div class="cont" style="display: none;">
+                
+                <div>
+                    <!-- 第一步：验证原手机号 -->
+                    <div class="cont_l phone" style="display: none;">
+                        <div class="line">
+                            <div class="lineTitle"></div>
+                            <div>
+                                已绑定的手机号码：156****9301
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">验证码:</div>
+                            <div><input type="password">
+                            <div class="sendcode">发送验证码</div></div>
+                        </div>
+                        <div class="line code_tip">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="error_code">验证码有误</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="btn_save">保存</div>
+                                <div class="btn_cancel">取消</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 第二步：验证新手机号码 -->
+                    <div class="cont_l phone" style="display: none;">
+                        <div class="line">
+                            <div class="lineTitle">新手机号:</div>
+                            <div><input type="password">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle">验证码:</div>
+                            <div><input type="password">
+                            <div class="sendcode">发送验证码</div></div>
+                        </div>
+                        <div class="line code_tip">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="error_code">验证码有误</div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="lineTitle"></div>
+                            <div>
+                                <div class="btn_save">保存</div>
+                                <div class="btn_cancel">取消</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- 第三步：修改结果 -->
+            <div class="cont p_result">
+                <div>
+                    <div class="msg">
+                        <div></div>
+                        <p>修改手机成功！</p>
+                    </div>
+                    <div class="btn_relog">重新登录</div>
+                </div>
+            </div>
+        </div> 
+        <!-- 学生成绩 -->
+        <div class="navCont" id="p4" >
+            <div class="contTitle">
+                学生成绩
+            </div>
+            <el-table
+                :data="tableData"
+                style="width: 100%;border-top: 1px solid #eee;">
+                <el-table-column
+                prop="dn"
+                label=""
+                width="50"
+                >
+                </el-table-column>
+                <el-table-column
+                prop="date"
+                label="学号"
+                >
+                </el-table-column>
+              
+                <el-table-column
+                prop="name"
+                label="姓名"
+                >
+                </el-table-column>
+                <el-table-column
+                prop="address"
+                label="班级">
+                </el-table-column>
+                <el-table-column
+                prop="magin"
+                label="小组">
+                </el-table-column>
+                <el-table-column
+                prop="shiyanname"
+                label="实验名称">
+                </el-table-column>
+                <el-table-column
+                prop="time"
+                label="实验提交时间">
+                </el-table-column>
+                <el-table-column
+                prop="source"
+                label="成绩">
+                </el-table-column>
+            </el-table>           
+        </div>
+        <!-- 开始实验 -->
+        <div class="navCont" id="p5" >
+            <div class="contTitle shiyan">
+                开始实验
+            </div>
+            <el-row style="width: 770px;">
+                <el-button type="danger">
+                    <a href="./storeopt.html" target="_blank">店铺优化实验</a>
+                </el-button>
+                <el-button type="primary">
+                    <a href="./commdetails.html" target="_blank">商品详情实验</a>
+                </el-button>
+                <el-button type="success">
+                    <a href="./editor.html" target="_blank">软文推广实验</a>
+                </el-button>
+                <el-button type="info">
+                    <a href="./shotvideo.html" target="_blank">短视频实验</a>
+                </el-button>
+                <el-button>
+                    <a href="./wuliu.html" target="_blank" style="color: #333;">电商冷链</a>
+                </el-button>
+                <el-button type="warning">
+                    <a href="#p7">直播实验</a>
+                </el-button>
+              </el-row>
+        </div>
+        <!-- 电商平台 -->
+        <div class="navCont" id="p6" >
+            <div class="contTitle">
+                电商平台
+            </div>
+            <div class="cont p_result">
+                <div>
+                    <div class="btn_relog">功能尚在完善中...</div>
+                </div>
+            </div>
+        </div>
+        <!-- 直播视频 -->
+        <div class="navCont" id="p7" >
+            <div class="contTitle">
+                直播实验
+            </div>
+            <div class="cont p_result">
+                <div>
+                    <div class="btn_relog">功能尚在完善中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+    <script src="../publicJs/element_ui/vue.js"></script>
+    <script src="../publicJs/element_ui/element.js"></script>
+    <script src="../js/usercenter.js"></script>
+    <script>
+        window.location.href="#p1";
+        var guding=document.querySelectorAll('.bandNav>.navItem');
+        if(guding){
+            for(var i =0 ; i<guding.length; i++){
+                guding[i].onclick = function(){
+                    var par= this.parentNode;
+                    var tag = par.classList.contains('click');
+                    reset();
+                    if(tag){
+                        par.classList.remove('click');
+                    }else{
+                        par.classList.add('click');
+                    }
+                }
+            }
+            function reset(){
+                for(var j =0 ;j <guding.length; j++){
+                    guding[j].parentNode.classList.remove('click');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
